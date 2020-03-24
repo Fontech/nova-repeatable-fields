@@ -34,6 +34,7 @@
 
 <script>
     import TextSubField from '../sub-fields/TextSubField.vue';
+    import TimeSubField from '../sub-fields/TimeSubField.vue';
     import EmailSubField from '../sub-fields/EmailSubField.vue';
     import NumberSubField from '../sub-fields/NumberSubField.vue';
     import SelectSubField from '../sub-fields/SelectSubField.vue';
@@ -43,6 +44,7 @@
 
         components: {
             TextSubField,
+            TimeSubField,
             EmailSubField,
             NumberSubField,
             SelectSubField,
