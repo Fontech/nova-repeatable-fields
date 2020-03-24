@@ -9,7 +9,7 @@
             @change="$emit('input', $event.target.value)">
             <option
                 value=""
-                v-text="placeholder"
+                v-text="subField.placeholder"
                 selected
                 disabled
             ></option>
@@ -32,14 +32,6 @@
             'subField',
             'value'
         ],
-
-        computed:{
-            placeholder(){
-                return (this.subField.placeholder === this.subField.label)
-                    ? this.__('Choose an option')
-                    : this.subField.placeholder
-            }
-        }
 
     }
 </script>
