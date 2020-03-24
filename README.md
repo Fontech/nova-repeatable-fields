@@ -1,6 +1,6 @@
 **NOTE**
 
-It is strongly recommended that you use the Nova Flexible Content package rather than this one: 
+It is strongly recommended that you use the Nova Flexible Content package rather than this one:
 
 [Nova Flexible Content](https://github.com/whitecube/nova-flexible-content)
 
@@ -26,28 +26,28 @@ You can install this package in to a Laravel app that uses [Nova](https://nova.l
 ```bash
 composer require fourstacks/nova-repeatable-fields
 ```
-    
+
 
 ## Usage
 
-To add a repeater field, use the `Fourstacks\NovaRepeatableFields\Repeater` field in your Nova resource:
+To add a repeater field, use the `Fontech\NovaRepeatableFields\Repeater` field in your Nova resource:
 
 ```php
 namespace App\Nova;
 
-use Fourstacks\NovaRepeatableFields\Repeater;
+use Fontech\NovaRepeatableFields\Repeater;
 
 // ...
 
 class Petstore extends Resource
 {
     // ...
-    
+
     public function fields(Request $request)
     {
         return [
             // ...
-            
+
             Repeater::make('Dogs'),
 
             // ...
@@ -75,7 +75,7 @@ The underlying database field should be either a `string` or `text` type field.
 
 ## Configuration
 
-This package comes with various options that you can use to define the sub fields within your repeater and 
+This package comes with various options that you can use to define the sub fields within your repeater and
 
 
 #### addField
@@ -90,7 +90,7 @@ Repeater::make('Dogs')
     ->addField([
         // configuation options
     ])
-         
+
 ```
 
 Configuration options are:
@@ -98,7 +98,7 @@ Configuration options are:
 ##### label
 
 ```php
-[ 
+[
     'label' => 'Dog name',
     //...
 ]
@@ -109,7 +109,7 @@ All sub fields must, at a minimum, be defined with a 'label'.  This is a human-r
 ##### name
 
 ```php
-[ 
+[
     'name' => 'dog_name',
     //...
 ]
@@ -120,7 +120,7 @@ By default, the `name` of the sub field (used when saving the data in the databa
 ##### type
 
 ```php
-[ 
+[
     'type' => 'number',
     //...
 ]
@@ -131,7 +131,7 @@ By default, the input type of the sub field will be a standard text field.  You 
 ##### placeholder
 
 ```php
-[ 
+[
     'placeholder' => 'Name that dog',
     //...
 ]
@@ -142,7 +142,7 @@ By default, the input `placeholder` will be the same as the sub field `label`.  
 #### width
 
 ```php
-[ 
+[
     'width' => 'w-1/2',
     //...
 ]
@@ -157,7 +157,7 @@ If you are displaying your sub fields in a stacked layout then width options wil
 ##### options
 
 ```php
-[ 
+[
     'options' => [
         'fido' => 'Fido',
         'mr_bubbles' => 'Mr Bubbles',
@@ -172,7 +172,7 @@ If the `type` of the sub field you are defining is 'select', you will need to de
 ##### attributes
 
 ```php
-[ 
+[
     'attributes' => [
         'min' => 1,
         'max' => '20',
@@ -204,9 +204,9 @@ Repeater::make('Dogs')
 The detail and index views show a summary of the data inputted using the repeater field.  By default this will show the count of the rows e.g. '3 rows' along with a link to expand to show the full data that was inputted:
 
 ![Nova repeatable field set on Nova index view - collapsed state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-collapsed.png)
-  
+
  You can overrides this summary text to something more specific  e.g. '3 dogs':
- 
+
  ![Nova repeatable field set on Nova index view - expanded state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-expanded.png)
 
 
@@ -217,7 +217,7 @@ Repeater::make('Dogs')
     ->displayStackedForm();
 ```
 
-By default, a set of sub fields will appear as a series of  horizontally aligned input fields:  
+By default, a set of sub fields will appear as a series of  horizontally aligned input fields:
 
  ![Nova repeatable field set on Nova form view - default horizontal fields](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-horizontal-form.png)
 
@@ -257,11 +257,11 @@ Repeater::make('Dogs')
 Sets the heading between each row (eg. Dog #1, Dog #2). Only works when used with "displayStackedForm".
 
 
-## Appendix - Migrating data to Nova Flexible Content 
+## Appendix - Migrating data to Nova Flexible Content
 
 This guide is only intended for existing users of this package that wish to use the Nova Flexible Content package instead and want an idea of how to migrate data.
 
-Please note that the following solution is a guide only.  It is up to you to implement and test a solution for your data and you are strongly recommended to backup any data before running any code that mutates multiple database rows. 
+Please note that the following solution is a guide only.  It is up to you to implement and test a solution for your data and you are strongly recommended to backup any data before running any code that mutates multiple database rows.
 
 I accept no responsibility for changes made to existing data as a result of you using the code below.  Got it?  OK, on with the show...
 

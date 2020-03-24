@@ -1,6 +1,6 @@
 <?php
 
-namespace Fourstacks\NovaRepeatableFields;
+namespace Fontech\NovaRepeatableFields;
 
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
