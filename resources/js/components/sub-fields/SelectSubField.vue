@@ -14,10 +14,11 @@
                 disabled
             ></option>
             <option
-                v-for="(label, name) in subField.options"
+                v-for="(option, name) in options"
                 :value="name"
                 :selected="name == value"
-                v-text="label"
+                v-text="option.label"
+                :disabled="option.disabled"
             ></option>
         </select>
     </div>
@@ -30,6 +31,7 @@
 
         props: [
             'subField',
+            'options',
             'value'
         ],
 
