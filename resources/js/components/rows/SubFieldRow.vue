@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import { pluck, contains } from '../../libs/helpers'
     import TextSubField from '../sub-fields/TextSubField.vue';
     import TimeSubField from '../sub-fields/TimeSubField.vue';
     import EmailSubField from '../sub-fields/EmailSubField.vue';
@@ -45,7 +46,7 @@
             TextareaSubField,
         },
 
-        props: ['value', 'field', 'index'],
+        props: ['value', 'field', 'index', 'rows'],
 
         computed:{
             formLayout(){
@@ -56,6 +57,9 @@
         },
 
         methods:{
+            uniqueFieldName(subField) {
+                return subField.name
+            },
             options(subField) {
                 if (subField.unique) {
                     return this.uniqueOptions(subField)
@@ -63,14 +67,28 @@
 
                 return subField.options
             },
+            pluckedValues(subField) {
+                const keyName = this.uniqueFieldName(subField)
+
+                return pluck(this.rows, keyName)
+            },
             uniqueOptions(subField) {
-                return []
+                const values = this.pluckedValues(subField)
+
+                const uniqueOptions = subField.options.map((option, index) => {
+                    const isOptionExisted = values.includes(`${index}`)
+
+                    option.disabled = isOptionExisted
+
+                    return option
+                })
+
+                return uniqueOptions
             },
             deleteRow(){
                 this.$emit('delete-row', this.index);
             },
             getInputLayout(subField){
-
                 let width = (subField.width)
                     ? subField.width
                     : 'flex-1';

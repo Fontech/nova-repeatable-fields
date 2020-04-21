@@ -10,6 +10,7 @@
                         :key="index"
                         :index="index"
                         :field="field"
+                        :rows="rows"
                         @delete-row="deleteRow"
                 ></sub-field-row>
             </draggable>

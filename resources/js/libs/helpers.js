@@ -1,6 +1,14 @@
 const isa = value => value && Array.isArray(value)
 
-const contains = (haystack, needle) => values(haystack).indexOf(needle) !== -1
+const values = items => {
+  if (isa(items)) {
+    return items
+  }
+
+  return Object.values(items)
+}
+
+export const contains = (haystack, needle) => values(haystack).indexOf(needle) !== -1
 
 const normalizeKey = key => {
   if (!isa(key)) {
@@ -18,14 +26,6 @@ const keys = (items) => {
   }
 
   return keys
-}
-
-const values = items => {
-  if (isa(items)) {
-    return items
-  }
-
-  return Object.values(items)
 }
 
 const _has = (items, key, defaultValue = null) => {

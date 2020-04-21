@@ -661,6 +661,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -35180,18 +35181,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_TimeSubField_vue__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_TimeSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__sub_fields_TimeSubField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_fields_EmailSubField_vue__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_fields_EmailSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__sub_fields_EmailSubField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sub_fields_NumberSubField_vue__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sub_fields_NumberSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__sub_fields_NumberSubField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sub_fields_SelectSubField_vue__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sub_fields_SelectSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__sub_fields_SelectSubField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sub_fields_TextareaSubField_vue__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sub_fields_TextareaSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__sub_fields_TextareaSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_helpers__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_TextSubField_vue__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_TextSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__sub_fields_TextSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_fields_TimeSubField_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_fields_TimeSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__sub_fields_TimeSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sub_fields_EmailSubField_vue__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sub_fields_EmailSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__sub_fields_EmailSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sub_fields_NumberSubField_vue__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sub_fields_NumberSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__sub_fields_NumberSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sub_fields_SelectSubField_vue__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sub_fields_SelectSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__sub_fields_SelectSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sub_fields_TextareaSubField_vue__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sub_fields_TextareaSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__sub_fields_TextareaSubField_vue__);
 //
 //
 //
@@ -35220,6 +35222,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -35231,15 +35234,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     components: {
-        TextSubField: __WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue___default.a,
-        TimeSubField: __WEBPACK_IMPORTED_MODULE_1__sub_fields_TimeSubField_vue___default.a,
-        EmailSubField: __WEBPACK_IMPORTED_MODULE_2__sub_fields_EmailSubField_vue___default.a,
-        NumberSubField: __WEBPACK_IMPORTED_MODULE_3__sub_fields_NumberSubField_vue___default.a,
-        SelectSubField: __WEBPACK_IMPORTED_MODULE_4__sub_fields_SelectSubField_vue___default.a,
-        TextareaSubField: __WEBPACK_IMPORTED_MODULE_5__sub_fields_TextareaSubField_vue___default.a
+        TextSubField: __WEBPACK_IMPORTED_MODULE_1__sub_fields_TextSubField_vue___default.a,
+        TimeSubField: __WEBPACK_IMPORTED_MODULE_2__sub_fields_TimeSubField_vue___default.a,
+        EmailSubField: __WEBPACK_IMPORTED_MODULE_3__sub_fields_EmailSubField_vue___default.a,
+        NumberSubField: __WEBPACK_IMPORTED_MODULE_4__sub_fields_NumberSubField_vue___default.a,
+        SelectSubField: __WEBPACK_IMPORTED_MODULE_5__sub_fields_SelectSubField_vue___default.a,
+        TextareaSubField: __WEBPACK_IMPORTED_MODULE_6__sub_fields_TextareaSubField_vue___default.a
     },
 
-    props: ['value', 'field', 'index'],
+    props: ['value', 'field', 'index', 'rows'],
 
     computed: {
         formLayout: function formLayout() {
@@ -35248,6 +35251,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        uniqueFieldName: function uniqueFieldName(subField) {
+            return subField.name;
+        },
         options: function options(subField) {
             if (subField.unique) {
                 return this.uniqueOptions(subField);
@@ -35255,14 +35261,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return subField.options;
         },
+        pluckedValues: function pluckedValues(subField) {
+            var keyName = this.uniqueFieldName(subField);
+
+            return Object(__WEBPACK_IMPORTED_MODULE_0__libs_helpers__["a" /* pluck */])(this.rows, keyName);
+        },
         uniqueOptions: function uniqueOptions(subField) {
-            return [];
+            var values = this.pluckedValues(subField);
+
+            var uniqueOptions = subField.options.map(function (option, index) {
+                var isOptionExisted = values.includes('' + index);
+
+                option.disabled = isOptionExisted;
+
+                return option;
+            });
+
+            return uniqueOptions;
         },
         deleteRow: function deleteRow() {
             this.$emit('delete-row', this.index);
         },
         getInputLayout: function getInputLayout(subField) {
-
             var width = subField.width ? subField.width : 'flex-1';
 
             if (this.field.display_stacked) {
@@ -39057,6 +39077,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39097,12 +39118,13 @@ var render = function() {
           domProps: { textContent: _vm._s(_vm.subField.placeholder) }
         }),
         _vm._v(" "),
-        _vm._l(_vm.options, function(label, name) {
+        _vm._l(_vm.options, function(option, name) {
           return _c("option", {
+            attrs: { disabled: option.disabled },
             domProps: {
               value: name,
               selected: name == _vm.value,
-              textContent: _vm._s(label)
+              textContent: _vm._s(option.label)
             }
           })
         })
@@ -39366,7 +39388,7 @@ var render = function() {
             _vm._l(_vm.rows, function(row, index) {
               return _c("sub-field-row", {
                 key: index,
-                attrs: { index: index, field: _vm.field },
+                attrs: { index: index, field: _vm.field, rows: _vm.rows },
                 on: { "delete-row": _vm.deleteRow },
                 model: {
                   value: _vm.rows[index],
@@ -39421,6 +39443,102 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export contains */
+/* unused harmony export get */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return pluck; });
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var isa = function isa(value) {
+  return value && Array.isArray(value);
+};
+
+var values = function values(items) {
+  if (isa(items)) {
+    return items;
+  }
+
+  return Object.values(items);
+};
+
+var contains = function contains(haystack, needle) {
+  return values(haystack).indexOf(needle) !== -1;
+};
+
+var normalizeKey = function normalizeKey(key) {
+  if (!isa(key)) {
+    key = ('' + key).replace(/^\[|\]/g, '').replace(/\[/g, '.').split('.');
+  }
+
+  return [].concat(_toConsumableArray(key));
+};
+
+var keys = function keys(items) {
+  var keys = Object.keys(items);
+
+  if (isa(items)) {
+    keys = keys.map(function (k) {
+      return +k;
+    });
+  }
+
+  return keys;
+};
+
+var _has = function _has(items, key) {
+  var defaultValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  key = normalizeKey(key);
+
+  var segment = '' + key.shift();
+
+  if (isa(items)) {
+    items = _extends({}, items);
+  }
+
+  if (!contains(keys(items), segment)) {
+    return [false, defaultValue];
+  }
+
+  var target = items[segment];
+
+  if (!key.length) {
+    return [true, target];
+  }
+
+  return _has(target, key, defaultValue);
+};
+
+var get = function get(items, key) {
+  var defaultValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  return _has(items, key, defaultValue)[1];
+};
+
+var pluck = function pluck(items, value) {
+  var key = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  var keyIsNull = key === null;
+
+  var result = keyIsNull ? [] : {};
+
+  for (var k in items) {
+    var row = items[k];
+
+    result = keyIsNull ? [].concat(_toConsumableArray(result), [get(row, value)]) : _extends({}, result, _defineProperty({}, get(row, key), get(row, value)));
+  }
+
+  return result;
+};
 
 /***/ })
 /******/ ]);
