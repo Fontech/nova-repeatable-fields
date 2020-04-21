@@ -17,6 +17,7 @@
                 :is="`${subField.type}-sub-field`"
                 :key="index"
                 :sub-field="subField"
+                :options="options(subField)"
                 v-model="value[subField.name]"
                 class="row-input mr-4"
                 :class="getInputLayout(subField)"
@@ -55,6 +56,16 @@
         },
 
         methods:{
+            options(subField) {
+                if (subField.unique) {
+                    return this.uniqueOptions(subField)
+                }
+
+                return subField.options
+            },
+            uniqueOptions(subField) {
+                return []
+            },
             deleteRow(){
                 this.$emit('delete-row', this.index);
             },

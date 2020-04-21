@@ -14,7 +14,7 @@
                 disabled
             ></option>
             <option
-                v-for="(label, name) in subField.options"
+                v-for="(label, name) in options"
                 :value="name"
                 :selected="name == value"
                 v-text="label"
@@ -30,6 +30,7 @@
 
         props: [
             'subField',
+            'options',
             'value'
         ],
 
