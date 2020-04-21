@@ -91,7 +91,7 @@ class Repeater extends Field
 
     private function normaliseFieldConfig($fieldConfig)
     {
-        $allowedKeys = ['label', 'name', 'placeholder', 'attributes', 'type', 'width', 'options', 'unique', 'after'];
+        $allowedKeys = ['label', 'name', 'placeholder', 'attributes', 'type', 'width', 'options', 'unique', 'greaterThan'];
         $config = array_intersect_key($fieldConfig, array_flip($allowedKeys));
 
         if(! isset($config['name'])){

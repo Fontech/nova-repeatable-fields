@@ -28,14 +28,14 @@
         ],
         watch: {
             'minDate'() {
-                if (this.pickerHasAfter) {
+                if (this.pickerGreaterThan) {
                     this.registerFlatpicker();
                 }
             }
         },
         computed: {
-            pickerHasAfter() {
-                return this.subField.after
+            pickerGreaterThan() {
+                return this.subField.greaterThan
             }
         },
         mounted () {

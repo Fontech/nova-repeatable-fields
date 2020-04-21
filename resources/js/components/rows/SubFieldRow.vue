@@ -59,9 +59,9 @@
 
         methods:{
             minDate(subField) {
-                const afterFieldName = subField.after
+                const greaterFieldName = subField.greaterThan
 
-                return this.value[afterFieldName]
+                return this.value[greaterFieldName]
             },
             uniqueFieldName(subField) {
                 return subField.name
