@@ -20,6 +20,7 @@
                 :options="options(subField)"
                 v-model="value[subField.name]"
                 class="row-input mr-4"
+                :min-date="minDate(subField)"
                 :class="getInputLayout(subField)"
             ></component>
         </div>
@@ -57,6 +58,11 @@
         },
 
         methods:{
+            minDate(subField) {
+                const greaterFieldName = subField.greaterThan
+
+                return this.value[greaterFieldName]
+            },
             uniqueFieldName(subField) {
                 return subField.name
             },

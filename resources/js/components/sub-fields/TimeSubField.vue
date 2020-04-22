@@ -23,11 +23,28 @@
 
         props: [
             'subField',
+            'minDate',
             'value'
         ],
-
+        watch: {
+            'minDate'() {
+                if (this.pickerGreaterThan) {
+                    this.registerFlatpicker();
+                }
+            }
+        },
+        computed: {
+            pickerGreaterThan() {
+                return this.subField.greaterThan
+            }
+        },
         mounted () {
             this.$nextTick(() => {
+                this.registerFlatpicker()
+            })
+        },
+        methods: {
+            registerFlatpicker() {
                 flatpickr(this.$refs.timePicker, {
                     noCalendar: true,
                     enableTime: true,
@@ -36,12 +53,12 @@
                     allowInput: true,
                     time_24hr: true,
                     minuteIncrement: 5,
-                    defaultHour: (new Date).getHours(),
-                    defaultMinute: (new Date).getMinutes(),
+                    minDate: this.minDate,
+                    defaultHour: 0,
                     onClose: () => this.$emit('input', this.$refs.timePicker.value)
                 })
-            })
-        },
+            }
+        }
 
     }
 </script>
